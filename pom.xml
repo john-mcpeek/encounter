@@ -121,14 +121,14 @@
 					<autoCreateCustomNetworks>true</autoCreateCustomNetworks>
 					<images>
 						<image>
-							<alias>${app.alias}-db</alias>
+							<alias>${project.name}-db</alias>
 							<name>postgres:14.1</name>
 							<run>
 								<containerNamePattern>%a</containerNamePattern>
 								<env>
 									<POSTGRES_USER>sa</POSTGRES_USER>
 									<POSTGRES_PASSWORD>password</POSTGRES_PASSWORD>
-									<POSTGRES_DB>${app.alias}</POSTGRES_DB>
+									<POSTGRES_DB>${project.name}</POSTGRES_DB>
 								</env>
 								<ports>
 									<port>5432:5432</port>
@@ -140,7 +140,7 @@
 							</run>
 						</image>
 						<image>
-							<alias>${app.alias}-zookeeper</alias>
+							<alias>${project.name}-zookeeper</alias>
 							<name>confluentinc/cp-zookeeper</name>
 							<run>
 								<containerNamePattern>%a</containerNamePattern>
@@ -155,16 +155,16 @@
 								</wait>
 								<network>
 									<alias>zookeeper</alias>
-									<name>${app.alias}</name>
+									<name>${project.name}</name>
 								</network>
 							</run>
 						</image>
 						<image>
-							<alias>${app.alias}-kafka</alias>
+							<alias>${project.name}-kafka</alias>
 							<name>confluentinc/cp-kafka</name>
 							<run>
 								<dependsOn>
-									<container>${app.alias}-zookeeper</container>
+									<container>${project.name}-zookeeper</container>
 								</dependsOn>
 								<containerNamePattern>%a</containerNamePattern>
 								<env>
@@ -182,7 +182,7 @@
 								</wait>
 								<network>
 									<alias>kafka</alias>
-									<name>${app.alias}</name>
+									<name>${project.name}</name>
 								</network>
 							</run>
 						</image>
