@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1637710962968-1
+      author: john (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: encounterPK
+                  name: id
+                  type: uuid
+            tableName: encounter
+

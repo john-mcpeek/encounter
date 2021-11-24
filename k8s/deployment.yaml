@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: encounter
+  name: encounter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: encounter
+  template:
+    metadata:
+      labels:
+        app: encounter
+    spec:
+      initContainers:
+        - name: init-liquibase
+          image: volcanolabs/liquibase/encounter/{{build-id}}
+          env:
+            - name: DB_HOST
+              value: {{db.host}}
+            - name: DB_PORT
+              value: {{db.port}}
+            - name: DB_NAME
+              value: {{db.name}}
+            - name: DB_OWNER
+              value: {{db.owner}}
+            - name: DB_CONTEXT
+              value: {{liquibase.context}}
+      containers:
+        - name: app
+          image: volcanolabs/app/encounter/{{build-id}}
+          env:
+            - name: SPRING_DATASOURCE_USERNAME
+              value: {{db.user}}
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://{{db.host}}:{{db.port}}/${db.name}?sslmode=require
+            - name: SPRING_LIQUIBASE_ENABLED
+              value: 'FALSE'
+
