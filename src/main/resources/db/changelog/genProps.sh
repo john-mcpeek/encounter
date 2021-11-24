@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 set -e
-#set -v
 
 if [[ -f "/liquibase/config/auth_token" ]]; then
   export PASSWORD=$(</liquibase/config/auth_token)
+  export SSL_MODIFIER="?sslmode=require"
 fi
 
 if [[ ! -v PASSWORD ]]; then
@@ -27,9 +27,9 @@ if [[ ! -v DB_NAME ]]; then
   echo "DB_NAME not set"
 fi
 
-echo "username: ${DB_OWNER}" > /liquibase/liquibase.properties
-echo "password: ${PASSWORD}" >> /liquibase/liquibase.properties
-echo "url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}?sslmode=require" >> /liquibase/liquibase.properties
-echo "contexts: ${DB_CONTEXT}" >> /liquibase/liquibase.properties
-echo "classpath: /liquibase/changelog" >> /liquibase/liquibase.properties
-echo "changeLogFile: db/changelog/db.changelog-master.yaml" >> /liquibase/liquibase.properties
+echo "username: ${DB_OWNER}" > /liquibase/config/liquibase.properties
+echo "password: ${PASSWORD}" >> /liquibase/config/liquibase.properties
+echo "url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}${SSL_MODIFIER}" >> /liquibase/config/liquibase.properties
+echo "contexts: ${DB_CONTEXT}" >> /liquibase/config/liquibase.properties
+echo "classpath: /liquibase/changelog" >> /liquibase/config/liquibase.properties
+echo "changeLogFile: db/changelog/db.changelog-master.yaml" >> /liquibase/config/liquibase.properties

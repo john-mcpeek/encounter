@@ -59,12 +59,12 @@ spec:
         - name: app
           image: volcanolabs/{{app.name}}/app/{{build-id}}
           env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: aws
             - name: SPRING_DATASOURCE_USERNAME
               value: {{db.user}}
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://{{db.host}}:{{db.port}}/${db.name}?sslmode=require
-            - name: SPRING_LIQUIBASE_ENABLED
-              value: 'FALSE'
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness
