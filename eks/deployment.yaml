@@ -65,6 +65,12 @@ spec:
               value: jdbc:postgresql://{{db.host}}:{{db.port}}/${db.name}?sslmode=require
             - name: SPRING_LIQUIBASE_ENABLED
               value: 'FALSE'
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
       volumes:
         - name: auth-token-vol
           emptyDir:
