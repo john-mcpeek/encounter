@@ -33,3 +33,4 @@ echo "url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}${SSL_MODIFIER}" >>
 echo "contexts: ${DB_CONTEXT}" >> /liquibase/config/liquibase.properties
 echo "classpath: /liquibase/changelog" >> /liquibase/config/liquibase.properties
 echo "changeLogFile: db/changelog/db.changelog-master.yaml" >> /liquibase/config/liquibase.properties
+echo "liquibase.hub.mode: off" >> /liquibase/config/liquibase.properties

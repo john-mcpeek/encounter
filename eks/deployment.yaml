@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: encounter
-  name: encounter
+    app: {{app.group}}
+  name: {{app.name}}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: encounter
+      app: {{app.name}}
   template:
     metadata:
       labels:
-        app: encounter
+        app: {{app.name}}
     spec:
       initContainers:
         - name: init-auth-token
-          image: volcanolabs/tools/aws
+          image: {{image.repo}}/tools/aws
           env:
             - name: DB_HOST
               value: {{db.host}}
@@ -40,7 +40,7 @@ spec:
             - name: auth-token-vol
               mountPath: /liquibase/config
         - name: init-liquibase
-          image: volcanolabs/{{app.name}}/liquibase/{{build-id}}
+          image: {{image.repo}}/{{app.name}}/liquibase/{{build-id}}
           env:
             - name: DB_HOST
               value: {{db.host}}
@@ -57,7 +57,7 @@ spec:
               mountPath: /liquibase/config
       containers:
         - name: app
-          image: volcanolabs/{{app.name}}/app/{{build-id}}
+          image: {{image.repo}}/{{app.name}}/app/{{build-id}}
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: aws

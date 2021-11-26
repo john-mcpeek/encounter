@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: 1637710962968-1
-      author: john (generated)
+      id: 1637846252357-1
+      author: johnm (generated)
       changes:
         - createTable:
             columns:
@@ -12,5 +12,43 @@ databaseChangeLog:
                     primaryKeyName: encounterPK
                   name: id
                   type: uuid
+              - column:
+                  name: patient_id
+                  type: uuid
             tableName: encounter
+  - changeSet:
+      id: 1637846252357-2
+      author: johnm (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: encounter_id
+                  type: uuid
+              - column:
+                  name: notes
+                  type: uuid
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: notes_order
+                  type: INTEGER
+            tableName: encounter_notes
+  - changeSet:
+      id: 1637846252357-3
+      author: johnm (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: encounter_id
+            baseTableName: encounter_notes
+            constraintName: FK6v1aryeqjm7kl7vbsw5gid7jc
+            deferrable: false
+            initiallyDeferred: false
+            referencedColumnNames: id
+            referencedTableName: encounter
+            validate: true
 
