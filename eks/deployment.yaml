@@ -60,7 +60,7 @@ spec:
           image: {{image.repo}}/{{app.name}}/app/{{build-id}}
           env:
             - name: SPRING_PROFILES_ACTIVE
-              value: aws
+              value: k8s
             - name: SPRING_DATASOURCE_USERNAME
               value: {{db.user}}
             - name: SPRING_DATASOURCE_URL
