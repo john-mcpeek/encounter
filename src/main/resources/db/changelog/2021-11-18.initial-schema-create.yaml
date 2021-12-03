@@ -6,12 +6,12 @@ databaseChangeLog:
         - createTable:
             columns:
               - column:
+                  name: id
+                  type: uuid
                   constraints:
                     nullable: false
                     primaryKey: true
                     primaryKeyName: encounterPK
-                  name: id
-                  type: uuid
               - column:
                   name: patient_id
                   type: uuid
@@ -23,20 +23,20 @@ databaseChangeLog:
         - createTable:
             columns:
               - column:
+                  name: encounter_id
+                  type: uuid
                   constraints:
                     nullable: false
                     primaryKey: true
-                  name: encounter_id
-                  type: uuid
               - column:
                   name: notes
                   type: uuid
               - column:
+                  name: notes_order
+                  type: INTEGER
                   constraints:
                     nullable: false
                     primaryKey: true
-                  name: notes_order
-                  type: INTEGER
             tableName: encounter_notes
   - changeSet:
       id: 1637846252357-3

@@ -6,7 +6,7 @@ metadata:
   name: {{app.name}}
 spec:
   ports:
-    - name: http
+    - name: {{app.name}}-http
       port: 8080
       protocol: TCP
       targetPort: 8080
