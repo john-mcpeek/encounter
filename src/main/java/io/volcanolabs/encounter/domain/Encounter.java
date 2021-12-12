@@ -3,6 +3,7 @@ package io.volcanolabs.encounter.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,6 +16,8 @@ public class Encounter {
 	UUID id;
 
 	UUID patientId;
+
+	LocalDateTime dateTime;
 
 	@OrderColumn
 	@ElementCollection
