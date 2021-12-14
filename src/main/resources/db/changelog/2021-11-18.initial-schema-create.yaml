@@ -13,6 +13,12 @@ databaseChangeLog:
                     primaryKey: true
                     primaryKeyName: encounterPK
               - column:
+                  name: date_time
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: location_id
+                  type: uuid
+              - column:
                   name: patient_id
                   type: uuid
             tableName: encounter

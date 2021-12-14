@@ -15,9 +15,11 @@ public class Encounter {
 	@GeneratedValue
 	UUID id;
 
-	UUID patientId;
-
 	LocalDateTime dateTime;
+
+	UUID locationId;
+
+	UUID patientId;
 
 	@OrderColumn
 	@ElementCollection

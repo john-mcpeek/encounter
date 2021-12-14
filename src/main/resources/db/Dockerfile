@@ -3,9 +3,9 @@ FROM liquibase/liquibase
 COPY changelog/*.yaml /liquibase/changelog/db/changelog/
 #COPY changelog/sql/*.sql /liquibase/changelog/db/changelog/sql/
 
-COPY genLiquibaseProps.sh /liquibase/
-COPY genLiquibaseProps.sh /usr/local/bin/
+COPY --chown=liquibase:liquibase genLiquibaseProps.sh /liquibase/
 
-RUN mkdir -m777 -p /liquibase/config
+RUN chmod +x /liquibase/genLiquibaseProps.sh &&\
+    mkdir -m777 -p /liquibase/config
 
-CMD [ "sh", "-c", "genLiquibaseProps.sh && docker-entrypoint.sh --defaultsFile config/liquibase.properties update" ]
+CMD [ "sh", "-c", "./genLiquibaseProps.sh && docker-entrypoint.sh --defaultsFile config/liquibase.properties update" ]

@@ -14,6 +14,7 @@ spec:
       labels:
         app: {{app.name}}
     spec:
+      serviceAccount: {{app.name}}-db-role
       initContainers:
         - name: init-auth-token
           image: {{image.repo}}/tools/aws
