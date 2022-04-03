@@ -48,7 +48,7 @@ spec:
             - name: DB_PORT
               value: {{db.port}}
             - name: DB_NAME
-              value: {{db.name}}
+              value: {{app.name}}
             - name: DB_OWNER
               value: {{db.owner}}
             - name: DB_CONTEXT
@@ -65,7 +65,7 @@ spec:
             - name: SPRING_DATASOURCE_USERNAME
               value: {{db.user}}
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://{{db.host}}:{{db.port}}/${db.name}?sslmode=require
+              value: jdbc:postgresql://{{db.host}}:{{db.port}}/{{app.name}}?sslmode=require
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness

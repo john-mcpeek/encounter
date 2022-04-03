@@ -1,14 +1,23 @@
 package io.volcanolabs.encounter.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.jackson.Jacksonized;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Data
 @Entity
+@Builder
+@Jacksonized
+@NoArgsConstructor
+@AllArgsConstructor
 public class Encounter {
 
 	@Id
@@ -19,9 +28,7 @@ public class Encounter {
 
 	UUID locationId;
 
-	UUID patientId;
+	UUID originatorId;
 
-	@OrderColumn
-	@ElementCollection
-	List<UUID> notes;
+	UUID patientId;
 }
