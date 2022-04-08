@@ -3,7 +3,39 @@ info:
   title: Encounter Service
   description: Encounter Service
   version: 1.0.0
+  contact:
+    name: Volcano Labs, Inc.
+    email: info@volcanolabs.io
+    url: https://volcanolabs.io
 servers:
-  - url: 'https'
+  - url: 'https://encounter.dev.volcanolabs.io'
+    description: Dev server
 paths:
-  "/api/v1/encounters"
+  /api/v1/encounters/{foo}:
+    get:
+      summary: Blah
+      description: Blah blah
+      tags:
+        - encounters
+      operationId: getEncountersV1
+      parameters:
+        - name: foo
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: blah
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    firstName:
+                      type: string
+
+        '404':
+          description: That ain't it!
